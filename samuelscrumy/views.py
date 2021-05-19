@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def index(request): 
-    return HttpResponse("welcome to Django") 
+    return HttpResponse("This is a Scrum Application") 
