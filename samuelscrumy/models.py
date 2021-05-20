@@ -31,7 +31,7 @@ class ScrumyHistory(models.Model):
         verbose_name_plural = 'ScrumyHistory'
         
     def __str__(self):
-        return self.time_of_action
+        return self.created_by
 
 class GoalStatus(models.Model):
     status_name = models.CharField(max_length=50)
