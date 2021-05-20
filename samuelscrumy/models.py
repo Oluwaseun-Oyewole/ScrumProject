@@ -6,7 +6,7 @@ from django.db.models.deletion import CASCADE, PROTECT
 
 class ScrumyGoals(models.Model):
     goal_name = models.CharField(max_length=50)
-    goal_id = models.AutoField(primary_key=True)
+    goal_id = models.IntegerField()
     created_by = models.CharField(max_length=30)
     moved_by = models.CharField(max_length=30)
     owner = models.CharField(max_length=30)
