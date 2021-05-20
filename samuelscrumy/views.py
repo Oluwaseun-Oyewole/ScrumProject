@@ -4,9 +4,13 @@ from .models import *
 
 
 def index(request): 
-    goal = ScrumyGoals.objects.filter(goal_name="Learn Django")
-    print(goal)
-    return HttpResponse(goal) 
+    return HttpResponse("This is a Scrum Application") 
+
+
+# def index(request): 
+#     goal = ScrumyGoals.objects.filter(goal_name="Learn Django")
+#     print(goal)
+#     return HttpResponse(goal) 
 
 # def move_goal(request, goal_id):
 #   item = ScrumyGoals.objects.get(goal_id=goal_id)
