@@ -1,17 +1,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
 from .models import *
-
+import random
+from django.contrib.auth.models  import User
 
 def index(request): 
-    return HttpResponse("This is a Scrum Application") 
+  goal = ScrumyGoals.objects.filter(goal_name="Learn Django")
+  return HttpResponse(goal) 
+
+def move_goal(request, goal_id):
+  goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
+  return HttpResponse(goal_item.goal_name) 
 
 
-# def index(request): 
-#     goal = ScrumyGoals.objects.filter(goal_name="Learn Django")
-#     print(goal)
-#     return HttpResponse(goal) 
+def add_goal(request):
+ goal = ScrumyGoals.objects.create(
+    goal_name = 'Keep Learning Django',
+    goal_id = random.randint(1000, 9999),
+    created_by = 'Louis',
+    moved_by = 'Louis',
+    owner = 'Louis',
+    goal_status = GoalStatus.objects.get(id=1),
+    user = User.objects.get(username='Louis') 
+  )
+ return HttpResponse('new item created')
 
-# def move_goal(request, goal_id):
-#   item = ScrumyGoals.objects.get(goal_id=goal_id)
-#   return HttpResponse(item.goal_name) 
+def home(request):
+  items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
+  for item in items:
+      return HttpResponse("The goal name " + item.goal_name + " should be displayed on the webpage")
+  return HttpResponse (items)
