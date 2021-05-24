@@ -15,7 +15,7 @@ class ScrumyGoals(models.Model):
     
     # class Meta:
     #     verbose_name_plural = 'ScrumyGoals'
-    
+     
     def __str__(self):
         return self.goal_name
     
