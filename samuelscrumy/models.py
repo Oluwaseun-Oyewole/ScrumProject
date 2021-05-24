@@ -13,8 +13,8 @@ class ScrumyGoals(models.Model):
     goal_status = models.ForeignKey('GoalStatus', on_delete=PROTECT)
     user = models.ForeignKey(User,  related_name='user', on_delete=models.CASCADE)
     
-    class Meta:
-        verbose_name_plural = 'ScrumyGoals'
+    # class Meta:
+    #     verbose_name_plural = 'ScrumyGoals'
     
     def __str__(self):
         return self.goal_name
@@ -27,8 +27,8 @@ class ScrumyHistory(models.Model):
     time_of_action = models.DateTimeField(auto_now_add=True)
     goal = models.ForeignKey(ScrumyGoals, on_delete=models.CASCADE)
      
-    class Meta:
-        verbose_name_plural = 'ScrumyHistory'
+    # class Meta:
+    #     verbose_name_plural = 'ScrumyHistory'
         
     def __str__(self):
         return self.created_by
@@ -36,8 +36,8 @@ class ScrumyHistory(models.Model):
 class GoalStatus(models.Model):
     status_name = models.CharField(max_length=50)
      
-    class Meta:
-        verbose_name_plural = 'GoalStatuses'
+    # class Meta:
+    #     verbose_name_plural = 'GoalStatuses'
         
     def __str__(self):
         return self.status_name
