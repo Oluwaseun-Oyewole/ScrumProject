@@ -24,7 +24,7 @@ def add_goal(request):
     moved_by = 'Louis',
     owner = 'Louis',
     goal_status = GoalStatus.objects.get(id=1),
-    user = User.objects.get(username='Louis') 
+    user = User.objects.get(username='louis') 
   )
   return HttpResponse('new item created')
 
