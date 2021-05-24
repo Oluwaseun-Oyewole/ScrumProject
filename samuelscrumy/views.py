@@ -5,15 +5,16 @@ import random
 from django.contrib.auth.models  import User
 
 
-def index(request):
-      return HttpResponse("This is a scrum Application") 
-# def index(request): 
-#   goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
-#   return HttpResponse(goal_name) 
+# def index(request):
+#       return HttpResponse("This is a scrum Application") 
+    
+def index(request): 
+  goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
+  return HttpResponse(goal_name) 
 
-# def move_goal(request, goal_id):
-#   goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
-#   return HttpResponse(goal_item.goal_name) 
+def move_goal(request, goal_id):
+  goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
+  return HttpResponse(goal_item.goal_name) 
 
 # def add_goal(request):
 #   ScrumyGoals.objects.create(
