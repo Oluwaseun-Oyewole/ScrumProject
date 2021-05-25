@@ -25,12 +25,12 @@ def add_goal(request):
   )
   return HttpResponse('new item created')
 
-def home(request):  
-  items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
-  output = ' '.join([eachgoal.goal_name for eachgoal in items])
-  return HttpResponse("The goal name " + output + " should be displayed on the webpage")
+# def home(request):  
+#   items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
+#   output = ' '.join([eachgoal.goal_name for eachgoal in items])
+#   return HttpResponse("The goal name " + output + " should be displayed on the webpage")
 
-def test(request):
+def home(request):
   items = {
     "goal_name":"Django is the best framework",
     "goal_id": 2,
