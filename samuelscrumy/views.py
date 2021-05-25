@@ -5,9 +5,9 @@ import random
 from django.contrib.auth.models  import User
 
     
-# def index(request): 
-#   goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
-#   return HttpResponse(goal_name) 
+def index(request): 
+  goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
+  return HttpResponse(goal_name) 
 
 # def move_goal(request, goal_id):
 #   goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
@@ -33,14 +33,14 @@ def add_goal(request):
   )
   return HttpResponse('new item created')
 
-def home(request):  
-  items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
-  output = ' '.join([eachgoal.goal_name for eachgoal in items])
-  return HttpResponse("The goal name " + output + " should be displayed on the webpage")
+# def home(request):  
+#   items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
+#   output = ' '.join([eachgoal.goal_name for eachgoal in items])
+#   return HttpResponse("The goal name " + output + " should be displayed on the webpage")
 
 
     
-def index(request):
+def home(request):
   goal_items = {
     "goal_name":"Learn Django",
     "goal_id": 2,
