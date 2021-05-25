@@ -9,10 +9,18 @@ from django.contrib.auth.models  import User
 #   goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
 #   return HttpResponse(goal_name) 
 
-def move_goal(request, goal_id):
-  goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
-  return HttpResponse(goal_item.goal_name) 
+# def move_goal(request, goal_id):
+#   goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
+#   return HttpResponse(goal_item.goal_name) 
 
+def move_goal(request, goal_id):
+    try:
+      obj = ScrumyGoals.objects.get(goal_id=goal_id)
+    except Exception as e: 
+      return render(request, 'samuelscrumy/exception.html', {'error': 'A record with that goal id does not exist'}) 
+    else: return HttpResponse(obj.goal_name)
+      
+      
 def add_goal(request):
   ScrumyGoals.objects.create(
     goal_name = 'Keep Learning Django',
@@ -39,3 +47,4 @@ def index(request):
     "user":User.objects.get(username='louis')
   }
   return render(request, 'samuelscrumy/home.html', context={"goal_items":goal_items})
+
