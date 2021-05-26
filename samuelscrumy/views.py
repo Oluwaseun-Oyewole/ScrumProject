@@ -14,7 +14,7 @@ def move_goal(request, goal_id):
   return HttpResponse(goal_item.goal_name) 
 
 def add_goal(request):
-  user = User.objects.get(username='louis'),
+  
   gs = GoalStatus.objects.get(status_name= "Daily Goal")
   goal_id = random.randint(1000, 9999)
   goals = ScrumyGoals.objects.create(
@@ -24,7 +24,7 @@ def add_goal(request):
     moved_by = 'Louis',
     owner = 'Louis',
     goal_status = gs,
-    user = user
+    user = User.objects.get(username='LouisOma')
   )
   return HttpResponse(goals)
   
