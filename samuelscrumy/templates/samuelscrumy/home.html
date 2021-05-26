@@ -8,16 +8,18 @@
         </tr>
         <tr>
         {% for user in users %}
-            <td>{{user.first_name}}</td>
+            <td>{{ user.first_name }}</td>
         {% endfor %}
         {% for goal in WeeklyGoal %}
-             <td>{{goal.goal_name}}</td>
+            <td>{{goal}}</td>
         {% endfor %}
-        {% for goal in DailyGoal %}
-            <td>{{goal.goal_name}}</td>
+         {% for goal in DailyGoal %}
+            <td>{{goal}}</td>
         {% endfor %}
-        {% for goal in DoneGoal %}            
-            <td>{{goal.goal_name}}</td>
+            
+        {% for goal in DoneGoal %}
+            <td>{{goal}}</td>
         {% endfor %}
+            
         </tr>
 </table>     
