@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
-}
