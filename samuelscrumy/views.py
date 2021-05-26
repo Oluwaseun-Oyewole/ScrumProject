@@ -14,8 +14,7 @@ def move_goal(request, goal_id):
   return HttpResponse(goal_item.goal_name) 
 
 def add_goal(request):
-  
-  gs = GoalStatus.objects.get(status_name= "Daily Goal")
+  gs = GoalStatus.objects.get(status_name= "Weekly Goal")
   goal_id = random.randint(1000, 9999)
   goals = ScrumyGoals.objects.create(
     goal_name = 'Keep Learning Django',
