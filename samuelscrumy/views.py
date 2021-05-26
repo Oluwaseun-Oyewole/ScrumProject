@@ -14,20 +14,25 @@ def move_goal(request, goal_id):
   return HttpResponse(goal_item.goal_name) 
 
 def add_goal(request):
-  ScrumyGoals.objects.create(
+  user = User.objects.get(username='louis'),
+  gs = GoalStatus.objects.get(status_name= "Daily Goal")
+  goal_id = random.randint(1000, 9999)
+  goals = ScrumyGoals.objects.create(
     goal_name = 'Keep Learning Django',
-    goal_id = random.randint(1000, 9999),
+    goal_id = goal_id,
     created_by = 'Louis',
     moved_by = 'Louis',
     owner = 'Louis',
-    goal_status = GoalStatus.objects.get(id=1),
-    user = User.objects.get(username='louis') 
+    goal_status = gs,
+    user = user
   )
-  return HttpResponse('new item created')
+  return HttpResponse(goals)
   
 # def home(request):
-#   return render(request, 'samuelscrumy/home.html', {"goal_name":"new django", "goal_id":3, "user":User.objects.filter().first()})
-
+#       goal_items = ScrumyGoals.objects.all()
+#       context = {"goal_items":goal_items}
+#       return render(request, 'samuelscrumy/home.html', context)
+          
 def home(request):  
   items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
   output = ' '.join([eachgoal.goal_name for eachgoal in items])
