@@ -30,5 +30,3 @@ def add_goal(request):
 #   output = ' '.join([eachgoal.goal_name for eachgoal in items])
 #   return HttpResponse("The goal name " + output + " should be displayed on the webpage")
 
-def home(request):
-  return HttpResponse ("The goal name “Keep learning Django” should be displayed on the webpage")
