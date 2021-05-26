@@ -7,7 +7,17 @@
             <th>Done Goal</th>
         </tr>
         <tr>
+        {% for user in users %}
             <td>{{user.first_name}}</td>
-            <td>{{goal_name}}, {{goal_id}}</td>
+        {% endfor %}
+        {% for goal in WeeklyGoal %}
+             <td>{{goal.goal_name}}</td>
+        {% endfor %}
+        {% for goal in DailyGoal %}
+            <td>{{goal.goal_name}}</td>
+        {% endfor %}
+        {% for goal in DoneGoal %}            
+            <td>{{goal.goal_name}}</td>
+        {% endfor %}
         </tr>
 </table>     
