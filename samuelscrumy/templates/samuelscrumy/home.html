@@ -20,7 +20,7 @@
             <td>{{goal.goal_name}}</td>
         {% endfor %}
        
-        {% for goal in DoneGoal %}
+        {% for goal in DoneGoal.scrumygoals_set.all %}
             <td>{{goal}}</td>
         {% endfor %}  
             
