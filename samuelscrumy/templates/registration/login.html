@@ -13,16 +13,16 @@
     <body>
 
         {% if form.errors %}
-            <p>invalid login credentials</p> 
-        {% else %}
-            <form method='POST' action=''> 
+            <p>invalid login credentials</p>
+         {% endif %} 
+        <form method='POST' action=''> 
             {% csrf_token %}
                 <input name="username" type="name"> username
                 <br>
                 <input name="password"type="password">password  
                 <br>  
                 <input type="submit"> 
-            </form>
-        {% endif %}
+        </form>
+
     </body>
 </html>
