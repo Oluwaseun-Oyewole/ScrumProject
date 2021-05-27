@@ -12,14 +12,12 @@
     </head>
     <body>
 
-        {% if form.errors %}
-            <p>invalid login credentials</p>
-         {% endif %} 
-        <form method='POST' action=''> 
+        {% if form.errors %} invalid login credentials {% endif %} 
+        <form method='POST' action=''autocomplete="off"> 
             {% csrf_token %}
-                <input name="username" type="name"> username
+                <input name="username" placeholder="Username">
                 <br>
-                <input name="password"type="password">password  
+                <input name="password" type="password" placeholder="Password"> 
                 <br>  
                 <input type="submit"> 
         </form>
