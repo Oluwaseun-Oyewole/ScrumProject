@@ -43,7 +43,13 @@ def add_goal(request):
 #       })
 
 def home(request):
-  context = {'users':User.objects.all(),'WeeklyGoal':GoalStatus.objects.get(id=1).scrumygoals_set.all(),'DailyGoal':GoalStatus.objects.get(id=2).scrumygoals_set.all(), 
-              'DoneGoal':GoalStatus.objects.get(id=4).scrumygoals_set.all()}
+  users = User.objects.all()
+  WeeklyGoal=GoalStatus.objects.get(id=1)
+  DailyGoal=GoalStatus.objects.get(id=2)
+  VerifyGoal=GoalStatus.objects.get(id=3)
+  DoneGoal=GoalStatus.objects.get(id=4)
+  context = {'users':users,'WeeklyGoal':WeeklyGoal, 'DailyGoal':DailyGoal, 
+             'VerifyGoal':VerifyGoal,
+             'DoneGoal':DoneGoal}        
   return render(request, 'samuelscrumy/home.html', context)
 
