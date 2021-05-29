@@ -1,13 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse 
 from .models import *
 import random
 from django.contrib.auth.models  import User
+from .forms import SignupForm, CreateGoalForm
 
     
+# def index(request): 
+#   goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
+#   return HttpResponse(goal_name) 
+
 def index(request): 
-  goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
-  return HttpResponse(goal_name) 
+  form = SignupForm()
+  print(request.POST)
+  if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+              form.save()
+              return redirect('/samuelscrumy')
+  return render(request, 'samuelscrumy/index.html', {'form': form})
+  
 
 # def move_goal(request, goal_id):
 #   goal_item = ScrumyGoals.objects.get(goal_id=goal_id)
@@ -21,17 +33,28 @@ def move_goal(request, goal_id):
     else: return HttpResponse(obj.goal_name)
     
     
+# def add_goal(request):
+#   goals = ScrumyGoals.objects.create(
+#     goal_name = 'Keep Learning Django',
+#     goal_id = random.randint(1000, 9999),
+#     created_by = 'Louis',
+#     moved_by = 'Louis',
+#     owner = 'Louis',
+#     goal_status = GoalStatus.objects.get(status_name= "Weekly Goal"),
+#     user = User.objects.get(username='LouisOma')
+#   )
+#   return HttpResponse(goals)
+
 def add_goal(request):
-  goals = ScrumyGoals.objects.create(
-    goal_name = 'Keep Learning Django',
-    goal_id = random.randint(1000, 9999),
-    created_by = 'Louis',
-    moved_by = 'Louis',
-    owner = 'Louis',
-    goal_status = GoalStatus.objects.get(status_name= "Weekly Goal"),
-    user = User.objects.get(username='LouisOma')
-  )
-  return HttpResponse(goals)
+    form = CreateGoalForm()
+    if request.method == 'POST':
+          form = CreateGoalForm(request.POST)
+          if form.is_valid():
+                form.save()
+                return redirect('/samuelscrumy/home')
+    return render(request, 'samuelscrumy/addgoal.html', {'form': form})
+      
+          
 
 # def home(request):
 #       items = ScrumyGoals.objects.filter(goal_name="Keep Learning Django")
@@ -53,3 +76,4 @@ def home(request):
              'DoneGoal':DoneGoal}        
   return render(request, 'samuelscrumy/home.html', context)
 
+  
