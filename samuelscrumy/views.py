@@ -11,13 +11,13 @@ from .forms import SignupForm, CreateGoalForm
 #   return HttpResponse(goal_name) 
 
 def index(request): 
-  form = SignupForm()
-  print(request.POST)
   if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
               form.save()
               return redirect('/samuelscrumy')
+  else:
+      form = CreateGoalForm()
   return render(request, 'samuelscrumy/index.html', {'form': form})
   
 
@@ -46,12 +46,16 @@ def move_goal(request, goal_id):
 #   return HttpResponse(goals)
 
 def add_goal(request):
-    form = CreateGoalForm()
     if request.method == 'POST':
           form = CreateGoalForm(request.POST)
           if form.is_valid():
+                form.save(commit=False)
+                form.goal_id = 3
+                form.goal_status =GoalStatus.objects.filter().last()
                 form.save()
                 return redirect('/samuelscrumy/home')
+    else:
+          form = CreateGoalForm()
     return render(request, 'samuelscrumy/addgoal.html', {'form': form})
       
           
