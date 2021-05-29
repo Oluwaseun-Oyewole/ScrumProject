@@ -4,20 +4,27 @@ from .models import *
 import random
 from django.contrib.auth.models  import User
 from .forms import SignupForm, CreateGoalForm
+from django.contrib.auth.models import Group
 
     
 # def index(request): 
 #   goal_name = ScrumyGoals.objects.filter(goal_name="Learn Django")
 #   return HttpResponse(goal_name) 
 
+        # my_group = Group.objects.get(name="Developer")
+        # my_group.user_set.add(form)
+        
 def index(request): 
   if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
               form.save()
+              user = User.objects.filter().last()
+              my_group = Group.objects.get(name="Developer")
+              my_group.user_set.add(user)
               return redirect('/samuelscrumy')
   else:
-      form = CreateGoalForm()
+    form = SignupForm()
   return render(request, 'samuelscrumy/index.html', {'form': form})
   
 
