@@ -12,7 +12,7 @@
     </head>
     <body>
 
-        {% if form.errors %} display error message. {% endif %}
+         {% if form.errors %} invalid login credentials {% endif %}
         <form method='POST' action="{% url 'samuelscrumy:account' %}"> 
                 {% csrf_token %}
                     <input name="username" placeholder="Username" type="text">  
