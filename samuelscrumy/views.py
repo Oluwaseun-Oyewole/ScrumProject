@@ -56,9 +56,6 @@ def add_goal(request):
     if request.method == 'POST':
           form = CreateGoalForm(request.POST)
           if form.is_valid():
-                form.save(commit=False)
-                form.goal_id = 3
-                form.goal_status =GoalStatus.objects.filter().last()
                 form.save()
                 return redirect('/samuelscrumy/home')
     else:
@@ -78,10 +75,10 @@ def add_goal(request):
 
 def home(request):
   users = User.objects.all()
-  WeeklyGoal=GoalStatus.objects.get(id=1)
-  DailyGoal=GoalStatus.objects.get(id=2)
-  VerifyGoal=GoalStatus.objects.get(id=3)
-  DoneGoal=GoalStatus.objects.get(id=4)
+  WeeklyGoal=GoalStatus.objects.get(id=1).scrumygoals_set.all()
+  DailyGoal=GoalStatus.objects.get(id=2).scrumygoals_set.all()
+  VerifyGoal=GoalStatus.objects.get(id=3).scrumygoals_set.all()
+  DoneGoal=GoalStatus.objects.get(id=4).scrumygoals_set.all()
   context = {'users':users,'WeeklyGoal':WeeklyGoal, 'DailyGoal':DailyGoal, 
              'VerifyGoal':VerifyGoal,
              'DoneGoal':DoneGoal}        

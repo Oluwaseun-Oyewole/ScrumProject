@@ -1,29 +1,29 @@
 <table style="width:50%; text-align:center">
         <tr>
             <th>User</th>
-            <th>Weekly Goal</th>
+             <th>Weekly Goal</th>
             <th>Daily Goal</th>
             <th>Verify Goal</th>
-            <th>Done Goal</th>
+            <th>Done Goal</th> 
         </tr>
-        <tr>
-        
         {% for user in users %}
-            <td>{{ user.username }}</td>
-        {% endfor %}
-        
-        {% for goal in WeeklyGoal.scrumygoals_set.all %}
-            <td>{{goal.goal_name}}</td>
+        <tr>
+                <td>{{ user.username }}</td>
+        </tr>
         {% endfor %}
 
-        {% for goal in DailyGoal.scrumygoals_set.all %}
-            <td>{{goal.goal_name}}</td>
-        {% endfor %}
-       
-        {% for goal in DoneGoal.scrumygoals_set.all %}
-            <td>{{goal}}</td>
-        {% endfor %}  
-            
+        <tr>
+            {% for goal in WeeklyGoal%}
+                <td>{{goal.goal_name}}</td>
+            {% endfor %}
+        </tr>
+            {% for goal in DailyGoal%}
+                <td>{{goal.goal_name}}</td>
+            {% endfor %}
+       <tr>
+            {% for goal in DoneGoal %}
+                <td>{{goal}}</td>
+            {% endfor %}  
         </tr>
 </table> 
 <a href="{% url 'samuelscrumy:addgoal' %}">Add goal</a>    
