@@ -18,10 +18,12 @@ def index(request):
   if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-              form.save()
-              user = User.objects.filter().last()
+              user = form.save(commit=False)
+              user.save()
               my_group = Group.objects.get(name="Developer")
               my_group.user_set.add(user)
+              
+          
               return redirect('samuelscrumy:creation')
   else:
     form = SignupForm()
