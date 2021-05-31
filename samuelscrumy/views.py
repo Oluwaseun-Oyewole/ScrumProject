@@ -79,7 +79,7 @@ def home(request):
   DailyGoal=GoalStatus.objects.get(id=2).scrumygoals_set.all()
   VerifyGoal=GoalStatus.objects.get(id=3).scrumygoals_set.all()
   DoneGoal=GoalStatus.objects.get(id=4).scrumygoals_set.all()
-  
+   
   context = {'users':users,'WeeklyGoal':WeeklyGoal, 'DailyGoal':DailyGoal, 
              'VerifyGoal':VerifyGoal,
              'DoneGoal':DoneGoal}        

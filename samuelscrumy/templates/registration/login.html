@@ -1,4 +1,4 @@
-{% comment %} <a href="{% url 'samuelscrumy:about' %}">About us</a> {% endcomment %}
+<a href="{% url 'samuelscrumy:about' %}">About us</a>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
     <body>
 
          {% if form.errors %} invalid login credentials {% endif %}
-        <form method='POST' action="{% url 'samuelscrumy:account' %}"> 
+        <form method='POST' action="{% url 'samuelscrumy:about' %}"> 
                 {% csrf_token %}
                     <input name="username" placeholder="Username" type="text">  
                     <br>
