@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% load  static %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'samuelscrumy/index.css' %}">
+    </head>
+    <body>
+        <div style="margin-top:30px; font-family:monospace; font-size:18px; margin:30px ">   
+            <h4>You have just logged out</h4>
+            <a href="{% url 'samuelscrumy:login'%}">Log back in</a> or <a href="{% url 'samuelscrumy:home'%}">Home</a>
+        </div>
+    </body>
+</html>

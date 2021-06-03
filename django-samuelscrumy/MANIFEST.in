@@ -1,0 +1,4 @@
+include LICENSE
+include README.rst
+recursive-include samuelscrumy/static *
+recursive-include samuelscrumy/templates *

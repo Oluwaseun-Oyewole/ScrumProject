@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div style="margin-top:30px; font-family:monospace; font-size:18px; margin:30px ">   
+            <h1>Signupghj</h1>
+            <form method="post" class="mt-5">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" style="font-size:20px">submit</button>
+            </form>
+        </div>
+    </body>
+</html>

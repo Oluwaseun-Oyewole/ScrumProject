@@ -12,8 +12,9 @@
     </head>
     <body>
 
+<div style="margin-top:30px; font-family:monospace; font-size:18px; margin:30px ">  
          {% if form.errors %} invalid login credentials {% endif %}
-        <form method='POST' action="{% url 'samuelscrumy:about' %}"> 
+        <form method='POST'> 
                 {% csrf_token %}
                     <input name="username" placeholder="Username" type="text">  
                     <br>
@@ -21,5 +22,15 @@
                     <br>  
                     <input type="submit"> 
         </form>
+        <a href="{% url 'samuelscrumy:about'  %}">signup</a>
+</div>    
     </body>
 </html>
+
+
+
+ {% comment %} <form method="post">
+    {% csrf_token %}
+    {{ form}}
+    <button type="submit">Login</button>
+  </form> {% endcomment %}

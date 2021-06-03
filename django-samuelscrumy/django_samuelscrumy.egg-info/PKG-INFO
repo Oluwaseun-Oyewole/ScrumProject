@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: django-samuelscrumy
+Version: 3.2.1
+Summary: Django-samuelscrumy helps you create goals and goal status with web based authentication and authorization
+Home-page: http://54.90.243.31:8000/samuelscrumy
+Author: Samuel Oyewole
+Author-email: findseunoyewole@gmail.com
+License: BSD License,
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Description-Content-Type: text/markdown
+
+=====
+samuelscrumy
+=====
+
+Django-samuelscrumy is a Django app that helps you create goals and goal status with web based authentication and authorization.
+
+Detailed documentation is in the "docs" directory.
+
+Quick start
+-----------
+
+1. Add "samuelscrumy" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...
+        'samuelscrumy',
+    ]
+
+2. Include the samuelscrumy URLconf in your project urls.py with a namespace of samuelscrumy like this::
+
+    path('samuelscrumy/', include('samuelscrumy.urls', namespace='samuelscrumy')),
+
+3. Run ``python manage.py migrate`` to create the samuelscrumy models.
+
+4. Start the development server and visit http://127.0.0.1:8000/samuelscrumy/ to register, to login navigate to http://127.0.0.1:8000/samuelscrumy/accounts/login/,
+then visit  http://127.0.0.1:8000/admin/ to create goals and goal statuses (you'll need the Admin app enabled) , and then navigate to  http://127.0.0.1:8000/samuelscrumy/home to check all available goals
+
+5. Visit http://127.0.0.1:8000/samuelscrumy/addgoal to create a new goal. 
+

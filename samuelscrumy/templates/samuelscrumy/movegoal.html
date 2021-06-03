@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% load  static %}
+    {% load crispy_forms_tags %}
+    {% load samuelscrumy_extras %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'samuelscrumy/index.css' %}">
+    </head>
+    <body>
+     <div class="topnav"> 
+        <a href="#contact">User: {{request.user}}</a>
+     {% comment %} {% if group %}
+        {% for name in group %}
+            <a href="#about">Group:{{name}}</a>
+        {% endfor %}
+    {% else %}
+         <a href="#about">Group:None</a>
+    {% endif %} {% endcomment %}
+
+    {% for user in request.user.groups.all  %}
+            {% if user %}
+                <a>Group: {{user}}</a>
+             {% else %}
+                Group: None
+            {% endif %}
+        {% endfor %}
+    </div>
+
+        <div style="margin-top:30px; font-family:monospace; font-size:18px; margin:30px ">   
+            <h2>Update goal status</h2>
+        {% if request.user.is_authenticated and obj.user == request.user or request.user|has_group:'Admin' or request.user|has_group:'Quality Assurance' %}
+                <form method="post" class="mt-5">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" style="font-size:20px">submit</button>
+            </form>
+            {% else %}
+                <p>Ooops, only the user or an admin can edit this form..so byeee 🙋‍♀️🙋‍♀️...lmaoooo </p>
+            {% endif %}
+        </div>
+    </body>
+</html>
