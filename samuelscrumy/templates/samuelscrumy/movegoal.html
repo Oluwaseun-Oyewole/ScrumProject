@@ -13,7 +13,6 @@
     </head>
     <body>
      <div class="topnav"> 
-        <a href="#contact">User: {{request.user}}</a>
      {% comment %} {% if group %}
         {% for name in group %}
             <a href="#about">Group:{{name}}</a>
@@ -21,7 +20,13 @@
     {% else %}
          <a href="#about">Group:None</a>
     {% endif %} {% endcomment %}
-
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'samuelscrumy:home' %}">Logged in as: {{user.username}}</a>
+    {% else %}  
+        <a href="{% url 'samuelscrumy:home' %}">User: AnonymousUser</a>
+        <a>Group: None</a>
+    {% endif %}
+     
     {% for user in request.user.groups.all  %}
             {% if user %}
                 <a>Group: {{user}}</a>
@@ -40,7 +45,7 @@
                 <button type="submit" style="font-size:20px">submit</button>
             </form>
             {% else %}
-                <p>Ooops, only the user or an admin can edit this form..so byeee 🙋‍♀️🙋‍♀️...lmaoooo </p>
+                <p>Only the user or an admin can edit this form </p>
             {% endif %}
         </div>
     </body>

@@ -13,26 +13,14 @@ class SignupForm(UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'email', 'username', 'password1','password2', 'group' ]
 
-
-
-# class SelectGroupForm(UserCreationForm):
-#     group = forms.ModelChoiceField(queryset=Group.objects.all(),
-#                                    required=True)
-#     class Meta:
-#         model = User
-#         fields = ['group']
         
 class SelectGroupForm(forms.ModelForm):
     group = forms.ModelChoiceField(queryset=Group.objects.all(),
                                    required=True)
     class Meta:
         model = Group
-        fields = ['group', 'permissions', ]
-        # fields = '__all__'
-        widgets = {
-            'permissions': FilteredSelectMultiple("Permission", False, attrs={'rows':'2'}),
-        }
-        
+        fields = ['group' ]
+
 
 class CreateGoalForm(forms.ModelForm):
     class Meta:

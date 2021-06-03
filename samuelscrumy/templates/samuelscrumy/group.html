@@ -13,7 +13,7 @@
     <body>
      <div class="topnav"> 
            {% if request.user.is_authenticated %}
-        <a>Logged in as: {{user.username}}</a>
+        <a href="{% url 'samuelscrumy:home' %}">Logged in as: {{user.username}}</a>
         {% else %}  
             <a>User: AnonymousUser</a>
             <a>Group: None</a>
@@ -27,7 +27,7 @@
         {% endfor %}
 
     </div>
-        <div style="margin-top:30px; font-family:monospace; font-size:18px; margin:30px ">   
+    <div style="margin-top:30px; font-family:monospace; font-size:18px; margin:30px ">   
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}

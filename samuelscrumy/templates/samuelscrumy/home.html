@@ -14,9 +14,9 @@
 
 {% comment %} for user  {% endcomment %}
 {% if request.user.is_authenticated %}
-  <a>Logged in as: {{user.username}}</a>
+  <a href="{% url 'samuelscrumy:home' %}">Logged in as: {{user.username}}</a>
 {% else %}  
-    <a>User: AnonymousUser</a>
+    <a href="{% url 'samuelscrumy:home' %}">User: AnonymousUser</a>
     <a>Group: None</a>
 {% endif %} 
 

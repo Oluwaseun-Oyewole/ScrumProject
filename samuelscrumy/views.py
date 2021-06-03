@@ -128,14 +128,17 @@ class SelectGroupView(generic.CreateView):
             return super(SelectGroupView, self).form_valid(form)
       
       
-      
 def add_group(request, id):
       group = Group.objects.get(id=id)
       print(group)
       if request.method == 'POST':
+            print(request.POST)
             form = SelectGroupForm(request.POST, instance=group)
             if form.is_valid():
+                  
                   form.save()
+                  print(form.cleaned_data)
+                  print(form.save())
             return redirect('/samuelscrumy/home')
       else:
             form = SelectGroupForm(instance=group)
