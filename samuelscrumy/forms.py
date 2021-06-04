@@ -7,11 +7,9 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 
 
 class SignupForm(UserCreationForm):
-    group = forms.ModelChoiceField(queryset=Group.objects.all(),
-                                   required=True)
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password1','password2', 'group' ]
+        fields = ['first_name', 'last_name', 'email', 'username', 'password1','password2']
 
         
 class SelectGroupForm(forms.ModelForm):
@@ -20,12 +18,16 @@ class SelectGroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ['group' ]
+    
+    def __init__(self, *args, **kwargs):
+        super(SelectGroupForm, self).__init__(*args, **kwargs)
+        self.fields['group'].empty_label = 'Please select a group'
 
 
 class CreateGoalForm(forms.ModelForm):
     class Meta:
         model = ScrumyGoals
-        fields = ['goal_name', 'created_by', 'moved_by', 'owner']
+        fields = ['goal_name', 'user']
 
 
 class UpdateGoalForm(forms.ModelForm):

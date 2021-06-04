@@ -34,8 +34,11 @@ def index(request):
         form = SignupForm(request.POST)
         if form.is_valid():
               user = form.save()
-              group = form.cleaned_data['group']        
-              group.user_set.add(user)
+              my_group = Group.objects.get(name='Developer') 
+              my_group.user_set.add(user)
+              user.save()
+            #   group = form.cleaned_data['group']        
+            #   group.user_set.add(user)
               return redirect('samuelscrumy:creation')
   else:
     form = SignupForm()
@@ -64,7 +67,7 @@ def move_goal(request, goal_id):
                         print("user goal status failed")                   
                   
                   # for quality assurance
-                  elif item.name == 'Quality Assurance':
+                  elif item.name == 'Quality-Assurance':
                         print("Quality Assurance")
                         if request.user == obj.user:
                               form.save()
@@ -89,13 +92,19 @@ def move_goal(request, goal_id):
 
 
 def add_goal(request):
+      all = request.user.groups.all()
       if request.method == 'POST':
             form = CreateGoalForm(request.POST)
             if form.is_valid():
                   user = form.save(commit=False)
                   user.goal_status_id = 1
-                  user.user = User.objects.get(username=request.user.username)
-                  user.save()
+                  all = request.user.groups.all()
+                  for item in all:
+                        if item.name != 'owner':
+                              user.user = User.objects.get(username=request.user.username)
+                              user.save()
+                        else:
+                              user.save()                  
                   return redirect('/samuelscrumy/home')
       else:
             form = CreateGoalForm()
@@ -111,35 +120,20 @@ def home(request):
   context = {'users':users, 'weekly':weekly, 'Daily':Daily, 'Verify':Verify, 'Done':Done,  }      
   return render(request, 'samuelscrumy/home.html', context)
 
-  
-
-class SelectGroupView(generic.CreateView):
-      form_class = SelectGroupForm
-      template_name = 'samuelscrumy/group.html'
-      
-      def get_success_url(self):
-        return reverse('samuelscrumy:home')
-  
-      def form_valid(self, form):
-            user =form.save(commit=False)
-            group = Group.objects.get(id=1)
-            group.user_set.add(user)
-            user.save()
-            return super(SelectGroupView, self).form_valid(form)
       
       
 def add_group(request, id):
-      group = Group.objects.get(id=id)
-      print(group)
+      
+      new_user = request.user
+      old_user_group = new_user.groups.all()      
       if request.method == 'POST':
-            print(request.POST)
-            form = SelectGroupForm(request.POST, instance=group)
+            form = SelectGroupForm(request.POST)
             if form.is_valid():
-                  
-                  form.save()
-                  print(form.cleaned_data)
-                  print(form.save())
+                  new_user_group = User.groups.through.objects.get(user=new_user)
+                  group_from_form = form.cleaned_data['group']
+                  new_user_group.group = group_from_form
+                  new_user_group.save()
             return redirect('/samuelscrumy/home')
       else:
-            form = SelectGroupForm(instance=group)
-      return render(request, 'samuelscrumy/group.html', {'form': form})
+            form = SelectGroupForm() 
+      return render(request, 'samuelscrumy/group.html', {'form': form}) 
