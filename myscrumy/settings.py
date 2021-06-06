@@ -82,10 +82,10 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'database-1',
-        'USER':'seun',
-        'PASSWORD':'websocketiotesting',
-        'HOST':'database-1.cemhpmkut0vz.us-east-1.rds.amazonaws.com',
+        'NAME': 'test',
+        'USER':'admin',
+        'PASSWORD':'plmokn0908',
+        'HOST':'aws-simplify.cemhpmkut0vz.us-east-1.rds.amazonaws.com',
         'PORT':'3306'
     }
 }
